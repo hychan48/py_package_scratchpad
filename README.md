@@ -23,3 +23,20 @@
 * build
 
 # Wheel Creation
+
+
+# SQLite - WSL
+* Using Ubuntu 22.04 WSL 2.0
+```bash
+# Install - don't think it needs to be installed at all
+sudo apt update
+sudo apt install -y sqlite3
+
+# Launch local in-memory
+sqlite3
+```
+```sql
+-- verifiy installed version
+select sqlite_version();
+select * from sqlite_master;
+```
