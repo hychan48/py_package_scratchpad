@@ -71,6 +71,10 @@ print(home)
 # Delete File
 Path().unlink(missing_ok=False)
 
+# Copy File
+#https://stackoverflow.com/questions/123198/how-to-copy-files
+shutil.copy("src","dir")
+
 
 
 ```
