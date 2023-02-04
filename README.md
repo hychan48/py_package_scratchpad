@@ -10,16 +10,23 @@
   * PyYaml
     * https://pypi.org/project/PyYAML/#:~:text=YAML%20is%20a%20data%20serialization,API%2C%20and%20sensible%20error%20messages.
 * sqlite3 orm
-  * https://pypi.org/project/SQLAlchemy/
+  * [x] https://pypi.org/project/SQLAlchemy/
   * https://pypi.org/project/ORM-SQLite/
 * file transfer
   * scp
   * paramiko?
 * fire
   * https://pypi.org/project/fire/
-* PyTest
-* Path Utils
+* [x] PyTest
+* [x] Path Utils
 * Jupiter - more light weight approach?
+* Console Color
+  * termcolor 2.2.0
+    * decent syntax. doesnt work with debugger (windows)
+    * no work on jetbrains remote either
+  * string-color
+    * works on remote to ubuntu on PyCharm / Jetbrains Client
+    * 
 
 # Testing Suites
 
