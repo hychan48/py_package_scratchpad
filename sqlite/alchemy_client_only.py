@@ -53,26 +53,15 @@ class Address(Base):
 
 
 # Unit Test Here
+from pathlib import Path
+# Just need to have the model classes. and create_engine
 class AlchemyClientOnly(unittest.TestCase):
     def setUp(self):
         from sqlalchemy import create_engine
         print('setUp engine')
-        from pathlib import Path
-        # sqlite_path = "sqlite://"+str(Path(__file__).parent.joinpath("sqlite3.db").as_posix())
-        # sqlite_path = "sqlite:////" + os.getcwd() + '\\dev\\demo1.db' # it's relative path i think
-        # 3 slashes relative to getcwd
-        sqlite_path = "sqlite:///sqlite\\demo.db"  # it's relative path i think
-        # sqlite_path = "sqlite:////" + os.getcwd() + '\\dev\\cards.cdb'
-        print(sqlite_path)
-        # with open(sqlite_path) as my_file:
-        #     print(my_file.read())
-        # todo google how to do window path on python
-        # self.engine = create_engine(sqlite_path, echo=True)
+        p_db = Path().joinpath("sqlite", "demo.db")
+        sqlite_path = "sqlite:///" + str(p_db)
         self.engine = create_engine(sqlite_path, echo=False)
-        # self.engine = create_engine("sqlite://", echo=False)
-
-        # Base.metadata.create_all(self.engine)
-
         self.assertEqual(True, True)  # add assertion here
 
     def test_run_raw_query(self):
