@@ -4,6 +4,8 @@
 * ssh clients
   * Paramiko
     * https://pypi.org/project/paramiko/
+  * SSH Tunneling / Port Forwarding
+  * stdin
 * yaml parsers
   * PyYaml
     * https://pypi.org/project/PyYAML/#:~:text=YAML%20is%20a%20data%20serialization,API%2C%20and%20sensible%20error%20messages.
@@ -12,9 +14,10 @@
   * https://pypi.org/project/ORM-SQLite/
 * file transfer
   * scp
+  * paramiko?
 * fire
   * https://pypi.org/project/fire/
-
+* PyTest
 
 # Testing Suites
 
