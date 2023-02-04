@@ -69,12 +69,13 @@ class AlchemyV0(unittest.TestCase):
         from sqlalchemy.sql import text
 
         with self.engine.connect() as con:
-            str_query="select sqlite_version();"
-            str_query="select * from sqlite_master;"
+            str_query = "select sqlite_version();"
+            str_query = "select * from sqlite_master;"
 
             cursorResult = con.execute(text(str_query))
             for row in cursorResult:
                 print(row)
+
     def create_initial_objects(self):
         engine = self.engine
         with Session(engine) as session:

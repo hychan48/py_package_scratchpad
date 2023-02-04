@@ -18,6 +18,8 @@
 * fire
   * https://pypi.org/project/fire/
 * PyTest
+* Path Utils
+* Jupiter - more light weight approach?
 
 # Testing Suites
 
