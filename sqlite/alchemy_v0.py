@@ -57,8 +57,16 @@ class AlchemyV0(unittest.TestCase):
     def setUp(self):
         from sqlalchemy import create_engine
         print('setUp engine')
-        # self.engine = create_engine("sqlite://"+os.path.curdir + "/demo.db", echo=True)
-        self.engine = create_engine("sqlite://", echo=False)
+        from pathlib import Path
+        # sqlite_path = "sqlite://"+str(Path(__file__).parent.joinpath("sqlite3.db").as_posix())
+        sqlite_path = "sqlite:////" + os.getcwd() + '\\dev\\demo.db'
+        sqlite_path = "sqlite:////" + os.getcwd() + '\\dev\\cards.cdb'
+        print(sqlite_path)
+        # with open(sqlite_path) as my_file:
+        #     print(my_file.read())
+        # todo google how to do window path on python
+        self.engine = create_engine(sqlite_path, echo=True)
+        # self.engine = create_engine("sqlite://", echo=False)
 
         Base.metadata.create_all(self.engine)
         self.create_initial_objects()
