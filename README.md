@@ -45,3 +45,27 @@ sqlite3
 select sqlite_version();
 select * from sqlite_master;
 ```
+
+# Python3 Live Templates
+```python
+# Make Directory
+from pathlib import Path
+Path().joinpath('dev', 'tmpFolder').mkdir(parents=True, exist_ok=True)
+
+# rm -rf force
+import shutil
+# shutil.rmtree(str(Path().joinpath('dev', 'tmpFolder')))
+shutil.rmtree(str(Path().joinpath('dev')))
+
+# expand user
+from os.path import expanduser
+home = expanduser('~')
+print(home)
+
+# Open File
+
+# Write to File
+
+## JSON / Dict converter
+
+```

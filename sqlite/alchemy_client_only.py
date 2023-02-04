@@ -52,10 +52,8 @@ class Address(Base):
         return f"Address(id={self.id!r}, email_address={self.email_address!r})"
 
 
-
 # Unit Test Here
-# Initialize and populate db file
-class AlchemyV0(unittest.TestCase):
+class AlchemyClientOnly(unittest.TestCase):
     def setUp(self):
         from sqlalchemy import create_engine
         print('setUp engine')
@@ -73,8 +71,7 @@ class AlchemyV0(unittest.TestCase):
         self.engine = create_engine(sqlite_path, echo=False)
         # self.engine = create_engine("sqlite://", echo=False)
 
-        Base.metadata.create_all(self.engine)
-        self.create_initial_objects()
+        # Base.metadata.create_all(self.engine)
 
         self.assertEqual(True, True)  # add assertion here
 
@@ -91,16 +88,16 @@ class AlchemyV0(unittest.TestCase):
                 print(row)
                 i += 1
             print(i) # Count
+
     def test_simple_query(self):
         engine = self.engine
         session = Session(engine)
         stmt = select(User).where(User.name.in_(["spongebob", "sandy"]))
-
         i = 0
         for user in session.scalars(stmt):
             print(user)
             i += 1
-            print(i)
+        print(i)
 
 
 if __name__ == '__main__':

@@ -31,6 +31,36 @@ class MyTestCase(unittest.TestCase):
         with open(sqlite_path,'r') as my_file:
             print(my_file.read())
             my_file.close()
+    def test_mkdir(self):
+        import os
+        from pathlib import Path
+        ## hard coded first
+        # folderPath = 'dev\\tmpFolder'
+        folderPath = str(Path().joinpath('dev','tmpFolder'))
+        print(folderPath)
+        # old way
+        # if(not os.path.exists(folderPath)): os.mkdir(folderPath)
+        # new way
+        # https: // www.programiz.com / python - programming / examples / create - nested - directories
+        Path().joinpath('dev', 'tmpFolder').mkdir(parents=True, exist_ok=True)
+        # repeated to make sure no error
+        Path().joinpath('dev', 'tmpFolder').mkdir(parents=True, exist_ok=True)
+        self.assertTrue(os.lstat(folderPath))
+        self.assertTrue(Path().joinpath('dev', 'tmpFolder').is_dir())
+        # Path().joinpath('dev', 'tmpFolder')
+        import shutil
+        shutil.rmtree(str(Path().joinpath('dev', 'tmpFolder')))
+
+        self.assertTrue(os.lstat(folderPath))
+
+    def test_expand_user_win(self):
+        # from pathlib.Path import expanduser
+        from os.path import expanduser
+        home = expanduser('~')
+        print(home)
+        self.assertTrue(True)
+
+
 
 
 if __name__ == '__main__':
