@@ -66,7 +66,27 @@ class MyTestCase(unittest.TestCase):
         print(str(p_db)) # sqlite\demo.db
         print(str(p_db.absolute())) #C:\...\sqlite\demo.db
         p_db.unlink(missing_ok=True)
-
+    def test_path_lib_posix_to_win(self):
+        p_db = Path('sqlite/demo.db')
+        # p_db = Path('sqlite/../sqlite/demo.db') # relative paths dont work
+        # p_db = Path('sqlite/../sqlite/demo.db').resolve() # worrks as expected
+        # p_db = Path('sqlite/../sqlite/demo.db') # worrks as expected
+        # p_db = Path().joinpath('sqlite/../sqlite/demo.db') # no work
+        p_db = Path().joinpath('sqlite/demo.db') # no work
+        # print(os.path.split("sqlite/../sqlite/demo.db"))
+        # print(os.path.split("sqlite\\..\\sqlite\\demo.db"))
+        # print(os.path.split("sqlite\\sqlite\\demo.db"))
+        # p_db = Path('~/sqlite/demo.db') # does not auto expand
+        # p_db = Path('sqlite/demo.db').absolute() # avoid?
+        # p_db = Path('sqlite/demo.db').resolve() # sym links
+        # posix gets converted to windows path. which is good
+        # https: // docs.python.org / 3 / library / pathlib.html
+        from pathlib import PurePath
+        # print('hi: ' +PurePath(__file__).name)
+        # print('hi: ' +Path(__file__).name)
+        self.assertEqual(Path(__file__).name,PurePath(__file__).name)
+        print(p_db)
+        print(p_db.exists())
 
 
 if __name__ == '__main__':
