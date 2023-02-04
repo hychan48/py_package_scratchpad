@@ -83,5 +83,11 @@ shutil.copy("src","dir")
 * https://docs.pytest.org/en/latest/
 * https://pypi.org/project/pytest/
 * naming conventions
+  * test_filename.py
+    * test_*.py or *_test.py
+  * def test_something():'
+* setUp / before()
+  * @pytest.fixture
 * suites
-* 
+* Print / debug
+  * https://codingshower.com/pytest-print-or-dump-variables-to-console-for-debugging/
