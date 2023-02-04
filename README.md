@@ -78,3 +78,10 @@ shutil.copy("src","dir")
 
 
 ```
+
+# PyTest
+* https://docs.pytest.org/en/latest/
+* https://pypi.org/project/pytest/
+* naming conventions
+* suites
+* 
