@@ -68,4 +68,9 @@ print(home)
 
 ## JSON / Dict converter
 
+# Delete File
+Path().unlink(missing_ok=False)
+
+
+
 ```

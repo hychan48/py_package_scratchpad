@@ -60,6 +60,12 @@ class MyTestCase(unittest.TestCase):
         print(home)
         self.assertTrue(True)
 
+    def test_delete_file(self):
+        p_db = Path().joinpath("sqlite", "demo.db")
+        # self.assertTrue(p_db.exists())
+        print(str(p_db)) # sqlite\demo.db
+        print(str(p_db.absolute())) #C:\...\sqlite\demo.db
+        p_db.unlink(missing_ok=True)
 
 
 

@@ -55,6 +55,27 @@ class Address(Base):
 
 # Unit Test Here
 # Initialize and populate db file
+def create_initial_objects(self):
+    engine = self.engine
+    with Session(engine) as session:
+        spongebob = User(
+            name="spongebob",
+            fullname="Spongebob Squarepants",
+            addresses=[Address(email_address="spongebob@sqlalchemy.org")],
+        )
+        sandy = User(
+            name="sandy",
+            fullname="Sandy Cheeks",
+            addresses=[
+                Address(email_address="sandy@sqlalchemy.org"),
+                Address(email_address="sandy@squirrelpower.org"),
+            ],
+        )
+        patrick = User(name="patrick", fullname="Patrick Star")
+
+        session.add_all([spongebob, sandy, patrick])
+
+        session.commit()
 class AlchemyV0(unittest.TestCase):
     def setUp(self):
         from sqlalchemy import create_engine
@@ -63,7 +84,10 @@ class AlchemyV0(unittest.TestCase):
         # sqlite_path = "sqlite://"+str(Path(__file__).parent.joinpath("sqlite3.db").as_posix())
         # sqlite_path = "sqlite:////" + os.getcwd() + '\\dev\\demo1.db' # it's relative path i think
         # 3 slashes relative to getcwd
-        sqlite_path = "sqlite:///sqlite\\demo.db"  # it's relative path i think
+        p_db = Path().joinpath("sqlite", "demo.db")
+        p_db.unlink(missing_ok=True) # remove file
+        # sqlite_path = "sqlite:///sqlite\\demo.db" # /// there is relative path to cwd
+        sqlite_path = "sqlite:///" + str(p_db)
         # sqlite_path = "sqlite:////" + os.getcwd() + '\\dev\\cards.cdb'
         print(sqlite_path)
         # with open(sqlite_path) as my_file:
@@ -74,7 +98,7 @@ class AlchemyV0(unittest.TestCase):
         # self.engine = create_engine("sqlite://", echo=False)
 
         Base.metadata.create_all(self.engine)
-        self.create_initial_objects()
+        create_initial_objects(self)
 
         self.assertEqual(True, True)  # add assertion here
 
