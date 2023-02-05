@@ -78,9 +78,20 @@ home = expanduser('~')
 print(home)
 
 # Open File
-
+import json # there's also dotmap package...
+with open(str(Path("dev/json_files/data.json"))) as json_file:
+    data = json.load(json_file)
 # Write to File
-
+data = {
+  "id": "04", 
+  "name": "sunil", 
+  "department": "HR"   
+}
+with open(str(Path("dev/json_files/out.json")), "w") as outfile:
+    # json.dump(data, outfile)
+    json.dump(data, outfile,indent = 2)
+    # json.dump(data, outfile,indent = 4)
+    # json.dumps(data, outfile,indent = 4)
 ## JSON / Dict converter
 
 # Delete File
