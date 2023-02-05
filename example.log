@@ -1,5 +1,2 @@
-DEBUG    root:test_pytest_demo.py:44 debug pytest
-INFO     root:test_pytest_demo.py:45 info pytest
-WARNING  root:test_pytest_demo.py:46 warning pytest
-ERROR    root:test_pytest_demo.py:47 error pytest
-CRITICAL root:test_pytest_demo.py:48 critical pytest
+WARNING  root:learn_path_utils.py:96 warning log inside test
+INFO     root:learn_path_utils.py:97 I told you so bla

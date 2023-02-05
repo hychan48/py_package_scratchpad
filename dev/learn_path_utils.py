@@ -26,17 +26,19 @@ class MyTestCase(unittest.TestCase):
         print(str(Path(__file__).parent.joinpath("sqlite3.db").resolve()))
         print(str(Path(__file__).parent.joinpath("sqlite3.db").absolute()))
         print(str(Path(__file__).parent.joinpath("sqlite3.db").as_posix()))
+
     def test_win32_url(self):
         sqlite_path = os.getcwd() + '\\dev\\tmp.txt'
-        with open(sqlite_path,'r') as my_file:
+        with open(sqlite_path, 'r') as my_file:
             print(my_file.read())
             my_file.close()
+
     def test_mkdir(self):
         import os
         from pathlib import Path
         ## hard coded first
         # folderPath = 'dev\\tmpFolder'
-        folderPath = str(Path().joinpath('dev','tmpFolder'))
+        folderPath = str(Path().joinpath('dev', 'tmpFolder'))
         print(folderPath)
         # old way
         # if(not os.path.exists(folderPath)): os.mkdir(folderPath)
@@ -63,16 +65,17 @@ class MyTestCase(unittest.TestCase):
     def test_delete_file(self):
         p_db = Path().joinpath("sqlite", "demo.db")
         # self.assertTrue(p_db.exists())
-        print(str(p_db)) # sqlite\demo.db
-        print(str(p_db.absolute())) #C:\...\sqlite\demo.db
+        print(str(p_db))  # sqlite\demo.db
+        print(str(p_db.absolute()))  # C:\...\sqlite\demo.db
         p_db.unlink(missing_ok=True)
+
     def test_path_lib_posix_to_win(self):
         p_db = Path('sqlite/demo.db')
         # p_db = Path('sqlite/../sqlite/demo.db') # relative paths dont work
         # p_db = Path('sqlite/../sqlite/demo.db').resolve() # worrks as expected
         # p_db = Path('sqlite/../sqlite/demo.db') # worrks as expected
         # p_db = Path().joinpath('sqlite/../sqlite/demo.db') # no work
-        p_db = Path().joinpath('sqlite/demo.db') # no work
+        p_db = Path().joinpath('sqlite/demo.db')  # no work
         # print(os.path.split("sqlite/../sqlite/demo.db"))
         # print(os.path.split("sqlite\\..\\sqlite\\demo.db"))
         # print(os.path.split("sqlite\\sqlite\\demo.db"))
@@ -84,9 +87,10 @@ class MyTestCase(unittest.TestCase):
         from pathlib import PurePath
         # print('hi: ' +PurePath(__file__).name)
         # print('hi: ' +Path(__file__).name)
-        self.assertEqual(Path(__file__).name,PurePath(__file__).name)
+        self.assertEqual(Path(__file__).name, PurePath(__file__).name)
         print(p_db)
         print(p_db.exists())
+
     def test_logging(self):
         import logging
         # logging.warning("warning log")
