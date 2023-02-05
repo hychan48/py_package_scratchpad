@@ -6,6 +6,13 @@ def inc(x):
     return x + 1
 
 
+import logging
+
+# logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.DEBUG)
+logging.basicConfig(filename='example.log', filemode='w', encoding='utf-8', level=logging.DEBUG)
+
+
+# logging.basicConfig(level=logging.DEBUG)
 def test_answer():
     assert inc(3) == 5
 
@@ -26,3 +33,16 @@ class TestClassDemoInstance:
     def test_two(self):
         self.value = 1
         assert self.value == 1
+    def test_logging(self):
+        # import logging
+        #
+        # # logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.DEBUG)
+        # logging.basicConfig(filename='example.log', filemode='w', encoding='utf-8', level=logging.DEBUG)
+        # # logging.basicConfig(level=logging.DEBUG)
+        # level name
+        # https: // docs.python.org / 3 / library / logging.html
+        logging.debug("debug pytest")
+        logging.info('info pytest')
+        logging.warning('warning pytest')
+        logging.error('error pytest')
+        logging.critical('critical pytest')

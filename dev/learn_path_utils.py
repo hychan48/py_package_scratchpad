@@ -87,6 +87,14 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(Path(__file__).name,PurePath(__file__).name)
         print(p_db)
         print(p_db.exists())
+    def test_logging(self):
+        import logging
+        # logging.warning("warning log")
+        logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.DEBUG)
+        # logging.basicConfig(level=logging.DEBUG)
+
+        logging.warning("warning log inside test")
+        logging.info('I told you so bla')  # will not print anything
 
 
 if __name__ == '__main__':

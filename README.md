@@ -29,6 +29,13 @@
     * 
 
 # Testing Suites
+* pytest
+  * logging
+  * set pyproject.toml
+    * look for further details
+    * doesnt flush file untill the end
+    * log_cli=true
+      * for inline print debugging
 
 # Lower Priority
 * dnspython
