@@ -91,6 +91,22 @@ class MyTestCase(unittest.TestCase):
         print(p_db)
         print(p_db.exists())
 
+    def test_load_json_as_dict(self):
+        import json # there's also dotmap package...
+        with open(str(Path("dev/json_files/data.json"))) as json_file:
+            data = json.load(json_file)
+            # print(data.strHello)
+            # print(data['strHello'])
+            self.assertEqual(data['strHello'], 'Hello')
+            self.assertEqual(data['arrayItems'][0], 1)
+            self.assertEqual(data['oData']['data'], 'data field')
+
+            with open(str(Path("dev/json_files/out.json")), "w") as outfile:
+                # json.dump(data, outfile)
+                json.dump(data, outfile,indent = 2)
+                # json.dump(data, outfile,indent = 4)
+                # json.dumps(data, outfile,indent = 4)
+
 
 if __name__ == '__main__':
     unittest.main()

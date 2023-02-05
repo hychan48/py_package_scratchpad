@@ -1,0 +1,7 @@
+{
+  "strHello": "Hello",
+  "arrayItems": [1,2,3,4],
+  "oData": {
+    "data": "data field"
+  }
+}
