@@ -101,6 +101,18 @@ Path().unlink(missing_ok=False)
 #https://stackoverflow.com/questions/123198/how-to-copy-files
 shutil.copy("src","dir")
 
+# PyTest
+import sys
+import pytest
+import logging as log
+
+
+def test_name():
+    log.warning("hi")
+
+
+if __name__ == '__main__':
+    pytest.main(sys.argv)
 
 
 ```
