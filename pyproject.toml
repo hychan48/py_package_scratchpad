@@ -1,8 +1,11 @@
 #https://docs.pytest.org/en/latest/how-to/logging.html#live-logs
 [tool.pytest.ini_options]
 log_file="example.log" # actually file
-log_cli = true # works, but to cli... obv
 log_file_level = "DEBUG"
+
+log_cli_level = "DEBUG" # DEBUG INFO WARNING ERROR CRITICAL
+log_cli = true # works, but to cli... obv
+
 
 
 #log_cli_format = %(asctime)s %(levelname)s %(message)s
