@@ -14,9 +14,11 @@ logging.basicConfig(filename='example.log', filemode='w', encoding='utf-8', leve
 
 # logging.basicConfig(level=logging.DEBUG)
 def test_answer():
-    assert inc(3) == 5
+    assert inc(4) == 5
+
 
 import pytest
+
 
 class TestClassDemoInstance:
     value = 0
@@ -26,6 +28,7 @@ class TestClassDemoInstance:
         print('starting on session')
         # with capsys.disabled():
         #     print("this output will not be captured and go straight to sys.stdout"
+
     def test_one(self):
         self.value = 1
         assert self.value == 1
@@ -33,6 +36,7 @@ class TestClassDemoInstance:
     def test_two(self):
         self.value = 1
         assert self.value == 1
+
     def test_logging(self):
         # import logging
         #
@@ -46,3 +50,9 @@ class TestClassDemoInstance:
         logging.warning('warning pytest')
         logging.error('error pytest')
         logging.critical('critical pytest')
+
+
+if __name__ == '__main__':
+    import sys
+
+    pytest.main(sys.argv)
