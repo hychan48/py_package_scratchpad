@@ -94,6 +94,10 @@ def test_tunnel():
 
     assert True
 
+#     https://stackoverflow.com/questions/3635131/paramikos-sshclient-with-sftp
+def test_sftp():
+    assert True
+
 
 if __name__ == '__main__':
     pytest.main(sys.argv)
