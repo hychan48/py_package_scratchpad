@@ -1,15 +1,25 @@
 {
   "str_hello": "hello",
-  "int_1": 1,
+  "int_2": 2,
   "items": [
     1,
     2,
     3
   ],
   "str_items": [
-    "one",
-    "two",
-    "three"
+    "five",
+    "six",
+    "seven"
+  ],
+  "nested_items": [
+    {
+      "children": [
+        10,
+        11,
+        12
+      ],
+      "__line__": 9
+    }
   ],
   "__line__": 1
 }

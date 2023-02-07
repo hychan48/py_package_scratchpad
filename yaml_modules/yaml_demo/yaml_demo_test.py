@@ -43,14 +43,16 @@ class SafeLineLoader(SafeLoader):
         node.__line__ = line + 1 # line numbers start at 0 so + 1
         log.critical(line + 1) # gets run per node
         return node
-    # seems better
+
+
+    # missing construct_object? seems better ref:
     # https://github.com/yaml/pyyaml/issues/456
     # construct_object instead of mapping
     def construct_mapping(self, node, deep=False):
         # mapping = super(SafeLineLoader, self).construct_mapping(node, deep=deep)
         # mapping = self.construct_mapping(node, deep=deep)
         mapping = super(SafeLineLoader, self).construct_mapping(node, deep=deep)
-        mapping['__line__'] = node.__line__
+        mapping['__line__'] = node.__line__ # parent line number start. so each mapping is per object
         log.critical(mapping) # only runs once... per mapping... so it doenst work properly
         return mapping
 

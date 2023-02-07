@@ -1,7 +1,12 @@
 str_hello: "hello"
-int_1: 1 # comments
+int_2: 2 # comments
 items: [1,2,3]
 str_items:
-   - "one"
-   - "two"
-   - "three"
+   - "five"
+   - "six"
+   - "seven"
+nested_items:
+   - children:
+        - 10
+        - 11
+        - 12
