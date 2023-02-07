@@ -2,15 +2,18 @@
 
 # Initial Packages to Test
 * ssh clients
+  * SSH Tunneling / Port Forwarding
+  * stdin
+  * Client connect
   1. Paramiko
     * https://pypi.org/project/paramiko/
     * also a server...
-  * SSH Tunneling / Port Forwarding
-  * stdin
   2. parallel-ssh
     * https://parallel-ssh.readthedocs.io/en/latest/quickstart.html#single-host-client
   3. ssh2-python
     * https://pypi.org/project/ssh2-python/
+  4. fabric
+    * https://docs.fabfile.org/en/stable/
 * yaml parsers
   * PyYaml
     * https://pypi.org/project/PyYAML/#:~:text=YAML%20is%20a%20data%20serialization,API%2C%20and%20sensible%20error%20messages.
