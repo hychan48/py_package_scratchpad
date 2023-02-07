@@ -3,7 +3,8 @@
 log_file="example.log" # actually file
 log_file_level = "DEBUG"
 
-log_cli_level = "DEBUG" # DEBUG INFO WARNING ERROR CRITICAL
+#log_cli_level = "DEBUG" # DEBUG INFO WARNING ERROR CRITICAL
+log_cli_level = "WARNING" # DEBUG INFO WARNING ERROR CRITICAL
 log_cli = true # works, but to cli... obv
 
 
