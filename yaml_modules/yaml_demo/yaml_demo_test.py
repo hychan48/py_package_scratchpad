@@ -26,24 +26,38 @@ from yaml.loader import SafeLoader
 # doesnt quite work im afraid. at least one of the answers
 class SafeLineLoaderOld(SafeLoader):
     def construct_mapping(self, node, deep=False):
-        mapping = super(SafeLineLoader, self).construct_mapping(node, deep=deep)
+        # mapping = super(SafeLineLoader, self).construct_mapping(node, deep=deep)
+        mapping = super().construct_mapping(node, deep=deep)
         # Add 1 so line numbering starts at 1
         # mapping['__line__'] = node.start_mark.line + 1
         log.critical(node)
         mapping['line'] = node.start_mark.line + 1
         return mapping
 
-
+# https://realpython.com/python-yaml/#dump-custom-data-types
 class SafeLineLoader(SafeLoader):
     def compose_node(self, parent, index):
         # the line number where the previous token has ended (plus empty lines)
         line = self.line
         # node = self.compose_node(parent, index) # max call stack
-        node = super(SafeLineLoader, self).compose_node(parent, index) # max call stack
+        # node = super(SafeLineLoader, self).compose_node(parent, index) # max call stack
+        node = super().compose_node(parent, index) # max call stack
         node.__line__ = line + 1 # line numbers start at 0 so + 1
-        log.critical(line + 1) # gets run per node
+        # log.critical(line + 1) # gets run per node
         return node
 
+
+    def construct_object(self, node, deep=False):
+        obj = super().construct_object(node, deep=deep)
+        # obj.hi='world'
+        log.critical(obj)
+        return obj
+        # key = id(obj)
+        # if key in self.locations:
+        #     self.locations[key] = None
+        # else:
+        #     self.locations[key] = node._myloader_location
+        # return obj
 
     # missing construct_object? seems better ref:
     # https://github.com/yaml/pyyaml/issues/456
@@ -53,7 +67,7 @@ class SafeLineLoader(SafeLoader):
         # mapping = self.construct_mapping(node, deep=deep)
         mapping = super(SafeLineLoader, self).construct_mapping(node, deep=deep)
         mapping['__line__'] = node.__line__ # parent line number start. so each mapping is per object
-        log.critical(mapping) # only runs once... per mapping... so it doenst work properly
+        # log.critical(mapping) # only runs once... per mapping... so it doenst work properly
         return mapping
 
 import json
@@ -69,7 +83,7 @@ def test_line_number():
             json.dump(d_yaml, outfile, indent=2)
 
         for data in d_yaml:
-            log.warning(data)
+            log.info(data)
             # log.warning(data.__line__)
 
 
