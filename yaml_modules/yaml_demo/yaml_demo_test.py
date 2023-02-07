@@ -21,9 +21,10 @@ def test_name():
 
 from yaml.loader import SafeLoader
 
+
 # https://stackoverflow.com/questions/13319067/parsing-yaml-return-with-line-number
 # doesnt quite work im afraid. at least one of the answers
-class SafeLineLoader(SafeLoader):
+class SafeLineLoaderOld(SafeLoader):
     def construct_mapping(self, node, deep=False):
         mapping = super(SafeLineLoader, self).construct_mapping(node, deep=deep)
         # Add 1 so line numbering starts at 1
@@ -33,13 +34,41 @@ class SafeLineLoader(SafeLoader):
         return mapping
 
 
+class SafeLineLoader(SafeLoader):
+    def compose_node(self, parent, index):
+        # the line number where the previous token has ended (plus empty lines)
+        line = self.line
+        # node = self.compose_node(parent, index) # max call stack
+        node = super(SafeLineLoader, self).compose_node(parent, index) # max call stack
+        node.__line__ = line + 1 # line numbers start at 0 so + 1
+        log.critical(line + 1) # gets run per node
+        return node
+    # seems better
+    # https://github.com/yaml/pyyaml/issues/456
+    # construct_object instead of mapping
+    def construct_mapping(self, node, deep=False):
+        # mapping = super(SafeLineLoader, self).construct_mapping(node, deep=deep)
+        # mapping = self.construct_mapping(node, deep=deep)
+        mapping = super(SafeLineLoader, self).construct_mapping(node, deep=deep)
+        mapping['__line__'] = node.__line__
+        log.critical(mapping) # only runs once... per mapping... so it doenst work properly
+        return mapping
+
+import json
 def test_line_number():
     yaml_filepath = Path().joinpath("yaml_modules", "sample.yml")
     # yaml_stream = open(str(yaml_filepath.resolve()),'r')
     with open(str(yaml_filepath.resolve()), "r") as yaml_stream:
+        # d_yaml = yaml.load_all(yaml_stream, SafeLineLoader)
         d_yaml = yaml.load(yaml_stream, SafeLineLoader)
+        # d_yaml = yaml.load_all(yaml_stream, SafeLineLoader) # generator class..
+        print(type(d_yaml)) # dict...
+        with open(str(Path("yaml_modules/yaml_demo/d_yaml.json")), "w") as outfile:
+            json.dump(d_yaml, outfile, indent=2)
+
         for data in d_yaml:
             log.warning(data)
+            # log.warning(data.__line__)
 
 
 if __name__ == '__main__':

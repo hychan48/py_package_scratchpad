@@ -1,0 +1,15 @@
+{
+  "str_hello": "hello",
+  "int_1": 1,
+  "items": [
+    1,
+    2,
+    3
+  ],
+  "str_items": [
+    "one",
+    "two",
+    "three"
+  ],
+  "__line__": 1
+}
