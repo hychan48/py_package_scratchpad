@@ -4,10 +4,13 @@
 * ssh clients
   * SSH Tunneling / Port Forwarding
   * stdin
-  * Client connect
+  * Client connect 
   1. Paramiko
     * https://pypi.org/project/paramiko/
     * also a server...
+    * works pretty fast actually
+    * supports windows
+    * tunneling is easy
   2. parallel-ssh
     * https://parallel-ssh.readthedocs.io/en/latest/quickstart.html#single-host-client
   3. ssh2-python
