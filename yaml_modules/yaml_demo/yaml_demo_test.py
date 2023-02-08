@@ -35,6 +35,7 @@ class SafeLineLoaderOld(SafeLoader):
         return mapping
 
 # https://realpython.com/python-yaml/#dump-custom-data-types
+# https://github.com/yaml/pyyaml/blob/8cdff2c80573b8be8e8ad28929264a913a63aa33/lib/yaml/composer.py
 class SafeLineLoader(SafeLoader):
     def compose_node(self, parent, index):
         # the line number where the previous token has ended (plus empty lines)
@@ -46,11 +47,16 @@ class SafeLineLoader(SafeLoader):
         # log.critical(line + 1) # gets run per node
         return node
 
-
+    # nothing of interest
+    def compose_scalar_node(self, anchor):
+        # log.error(anchor)
+        node = super().compose_scalar_node(anchor)
+        # log.critical(node)
+        return node
     def construct_object(self, node, deep=False):
         obj = super().construct_object(node, deep=deep)
         # obj.hi='world'
-        log.critical(obj)
+        # log.critical(obj)
         return obj
         # key = id(obj)
         # if key in self.locations:
