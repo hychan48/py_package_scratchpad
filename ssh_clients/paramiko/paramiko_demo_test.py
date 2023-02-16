@@ -8,6 +8,27 @@ from os.path import expanduser
 from pathlib import Path
 
 
+class SSHExecClass():
+    def __init__(self, connection=""):
+        # connection (todo)
+        client = SSHClient()
+        self.client = client
+        self.environment = {}
+
+        id_rsa = Path(expanduser('~')).joinpath(".ssh", "id_rsa")
+        assert id_rsa.exists()
+        client.load_system_host_keys(filename=str(id_rsa))
+        client.set_missing_host_key_policy(WarningPolicy)
+        client.connect('localhost', port=2022, username='root', allow_agent=False)  # fine
+    def ssh_exec_cmd(self,cmd):
+        log.warning(self.environment)
+        stdin, stdout, stderr = self.client.exec_command(cmd, environment=self.environment)
+        # return stdin, stdout, stderr, stdout.readlines()
+        return stdout.readlines()
+    def close(self):
+        # must close client and transport
+        self.client.close()
+
 # https://docs.paramiko.org/en/stable/api/client.html
 def test_name():
     # log.warning("hi")
@@ -94,10 +115,28 @@ def test_tunnel():
 
     assert True
 
-#     https://stackoverflow.com/questions/3635131/paramikos-sshclient-with-sftp
-def test_sftp():
-    assert True
+def test_env_without():
+    c_client = SSHExecClass()
+    tmp = c_client.ssh_exec_cmd("printenv HOST_IP") # linux ssh command
+    log.warning(tmp)
+    assert len(tmp) == 0 # empty list
+    c_client.close()
 
+def test_env_with():
+    c_client = SSHExecClass()
+    c_client.environment['HOST_IP'] = '127.0.0.1'
+    c_client.environment['LC_HOST_IP'] = '127.0.0.1'
+    # tmp = c_client.ssh_exec_cmd("printenv HOST_IP") # linux ssh command
+    # log.warning(c_client.environment)
+    # tmp = c_client.ssh_exec_cmd("echo -n $HOST_IP") # linux ssh command
+    # tmp = c_client.ssh_exec_cmd("echo -n $LC_HOST_IP") # linux ssh command
+    tmp = c_client.ssh_exec_cmd("printenv LC_HOST_IP")
+    log.warning(tmp)
+    assert len(tmp) == 1 # empty list
+    c_client.close()
+def test_sftp():
+    #     https://stackoverflow.com/questions/3635131/paramikos-sshclient-with-sftp
+    pass
 
 if __name__ == '__main__':
     pytest.main(sys.argv)
