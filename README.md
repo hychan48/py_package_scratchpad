@@ -140,3 +140,11 @@ if __name__ == '__main__':
 * suites
 * Print / debug
   * https://codingshower.com/pytest-print-or-dump-variables-to-console-for-debugging/
+
+# SSH Environment
+https://www.ssh.com/academy/ssh/sshd_config#:~:text=The%20sshd_config%20file%20is%20an,in%20double%20quotes%20(%22).
+```bash
+# Defaults i believe
+AcceptEnv LANG LC_*
+PermitUserEnvironment No
+```

@@ -20,7 +20,7 @@ class SSHExecClass():
         client.load_system_host_keys(filename=str(id_rsa))
         client.set_missing_host_key_policy(WarningPolicy)
         client.connect('localhost', port=2022, username='root', allow_agent=False)  # fine
-    def ssh_exec_cmd(self,cmd):
+    def ssh_exec_cmd(self, cmd):
         log.warning(self.environment)
         stdin, stdout, stderr = self.client.exec_command(cmd, environment=self.environment)
         # return stdin, stdout, stderr, stdout.readlines()
@@ -134,6 +134,35 @@ def test_env_with():
     log.warning(tmp)
     assert len(tmp) == 1 # empty list
     c_client.close()
+
+def test_aoda():
+    # aoda test
+    # log.warning("hi")
+    client = SSHClient()
+
+    id_rsa = Path(expanduser('~')).joinpath(".ssh", "id_rsa")
+    assert id_rsa.exists()
+    client.load_system_host_keys(filename=str(id_rsa))
+    # client.load_host_keys(filename=str(id_rsa))
+    client.set_missing_host_key_policy(WarningPolicy)
+
+    # client.connect('localhost', port=2022, username='root') # fine
+    client.connect('localhost', port=2022, username='root', allow_agent=False)  # fine
+    # client.connect('localhost', port=2022, username='root',look_for_keys=False) # will crash
+    # client.connect('localhost', port=2022, username='root',look_for_keys=False,allow_agent=False) # will crash
+
+    i = 1
+    i = 10
+    for x in range(i):
+        stdin, stdout, stderr = client.exec_command('ls -l')
+        # log.warning(stdout)
+        # paramiko.ChannelFile
+        stdouts = stdout.readlines()
+        # class paramiko.file.BufferedFile?
+        # log.warning(stdouts) # returns ["total 0\n"]
+        assert stdouts[0] == 'total 0\n'
+
+    client.close()
 def test_sftp():
     #     https://stackoverflow.com/questions/3635131/paramikos-sshclient-with-sftp
     pass
