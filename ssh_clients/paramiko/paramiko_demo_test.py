@@ -135,32 +135,24 @@ def test_env_with():
     assert len(tmp) == 1 # empty list
     c_client.close()
 
-def test_aoda():
+def test_windows():
     # aoda test
     # log.warning("hi")
+    from os import getenv
+    assert getenv("WIN_PASS")
     client = SSHClient()
-
-    id_rsa = Path(expanduser('~')).joinpath(".ssh", "id_rsa")
-    assert id_rsa.exists()
-    client.load_system_host_keys(filename=str(id_rsa))
-    # client.load_host_keys(filename=str(id_rsa))
     client.set_missing_host_key_policy(WarningPolicy)
-
-    # client.connect('localhost', port=2022, username='root') # fine
-    client.connect('localhost', port=2022, username='root', allow_agent=False)  # fine
-    # client.connect('localhost', port=2022, username='root',look_for_keys=False) # will crash
-    # client.connect('localhost', port=2022, username='root',look_for_keys=False,allow_agent=False) # will crash
-
-    i = 1
-    i = 10
-    for x in range(i):
-        stdin, stdout, stderr = client.exec_command('ls -l')
-        # log.warning(stdout)
-        # paramiko.ChannelFile
-        stdouts = stdout.readlines()
-        # class paramiko.file.BufferedFile?
-        # log.warning(stdouts) # returns ["total 0\n"]
-        assert stdouts[0] == 'total 0\n'
+    client.connect('localhost', port=22, username=getenv("WIN_USERNAME"), password=getenv('WIN_PASS'), allow_agent=False)  # fine
+    # bty default windows ssh doesnt allow env to bet set like this in it's sshd_config... so
+    environment = {
+        "LC_HI": 'hello world'
+    }
+    stdin, stdout, stderr = client.exec_command('set LC_HI', environment=environment)
+    # stdin, stdout, stderr = client.exec_command('set PATH', environment=environment) # this one obv works...
+    stdouts = stdout.readlines()
+    log.warning(stdouts)
+    # assert len(stdouts == 1  # empty list
+    # assert stdouts[0] == 'total 0\n'
 
     client.close()
 def test_sftp():

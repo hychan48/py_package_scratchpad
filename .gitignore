@@ -1,3 +1,5 @@
 /.idea/
 /example.log
 /pytest/example.log
+.env
+
