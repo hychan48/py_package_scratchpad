@@ -40,6 +40,9 @@ class SafeLineLoader(SafeLoader):
     def compose_node(self, parent, index):
         # the line number where the previous token has ended (plus empty lines)
         line = self.line
+        column = self.column
+        log.warning(f"compose_node line: {line + 1}")
+        log.warning(f"compose_node col: {column + 1}")
         # node = self.compose_node(parent, index) # max call stack
         # node = super(SafeLineLoader, self).compose_node(parent, index) # max call stack
         node = super().compose_node(parent, index) # max call stack
@@ -54,6 +57,11 @@ class SafeLineLoader(SafeLoader):
         # log.critical(node)
         return node
     def construct_object(self, node, deep=False):
+        # wrong place to get line and column from self.
+        # line = self.line
+        # column = self.column
+        # log.warning(f"construct_object line: {line}")
+        # log.warning(f"construct_object col: {column}")
         obj = super().construct_object(node, deep=deep)
         # obj.hi='world'
         # log.critical(obj)
@@ -85,6 +93,7 @@ def test_line_number():
         d_yaml = yaml.load(yaml_stream, SafeLineLoader)
         # d_yaml = yaml.load_all(yaml_stream, SafeLineLoader) # generator class..
         print(type(d_yaml)) # dict...
+
         with open(str(Path("yaml_modules/yaml_demo/d_yaml.json")), "w") as outfile:
             json.dump(d_yaml, outfile, indent=2)
 
