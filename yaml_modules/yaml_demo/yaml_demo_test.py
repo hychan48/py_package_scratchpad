@@ -84,6 +84,8 @@ class SafeLineLoader(SafeLoader):
         # log.critical(mapping) # only runs once... per mapping... so it doenst work properly
         return mapping
 
+    # todo look into compose_mapping_node(self, anchor):
+
 import json
 def test_line_number():
     yaml_filepath = Path().joinpath("yaml_modules", "sample.yml")
