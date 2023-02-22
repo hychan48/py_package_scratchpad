@@ -93,5 +93,20 @@ def test_line_number():
             # log.warning(data.__line__)
 
 
+def test_dataclass():
+    from dataclasses import dataclass
+    # https://www.w3schools.com/python/python_datatypes.asp
+    # https://docs.python.org/3/library/dataclasses.html
+
+    # try nested class
+    @dataclass(init=True)
+    class YamlItems:
+        key: str # or maybe complex
+        value: complex # or maybe a nested class or list or something? NoneType?
+        line: int
+        column: int
+    pass
+
+
 if __name__ == '__main__':
     pytest.main(sys.argv)
