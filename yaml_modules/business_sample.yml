@@ -1,0 +1,13 @@
+metadata:
+    name: business_sample.yml
+apply:
+  - on-four:
+      - echo a five
+      - on-six:
+          - on-7:
+              - echo c 8
+          - echo b on 9
+          - on-10:
+              - echo c 11
+          - echo b on 12
+      - echo a 13
