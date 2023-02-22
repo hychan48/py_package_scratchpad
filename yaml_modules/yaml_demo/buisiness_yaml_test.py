@@ -94,7 +94,7 @@ def test_line_number():
 
 
 def test_dataclass():
-    from dataclasses import dataclass
+    from dataclasses import dataclass, asdict
     # https://www.w3schools.com/python/python_datatypes.asp
     # https://docs.python.org/3/library/dataclasses.html
 
@@ -109,7 +109,9 @@ def test_dataclass():
 
 
     a = YamlItems("a")
-    log.warning(a)
+    # log.warning(a)
+    log.warning(asdict(a)) # works
+
     # @dataclass
     # class C:
     #      mylist: list[Point]
