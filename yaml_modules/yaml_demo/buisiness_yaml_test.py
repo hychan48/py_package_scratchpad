@@ -102,10 +102,17 @@ def test_dataclass():
     @dataclass(init=True)
     class YamlItems:
         key: str # or maybe complex
-        value: complex # or maybe a nested class or list or something? NoneType?
-        line: int
-        column: int
-    pass
+        value: complex = 0 # or maybe a nested class or list or something? NoneType?
+        line: int = 0
+        column: int = 0
+
+
+
+    a = YamlItems("a")
+    log.warning(a)
+    # @dataclass
+    # class C:
+    #      mylist: list[Point]
 
 
 if __name__ == '__main__':
