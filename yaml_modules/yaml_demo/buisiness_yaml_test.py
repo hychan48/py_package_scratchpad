@@ -108,8 +108,8 @@ def test_dataclass():
 
     a = YamlItems("a",'A')
     b = YamlItems("b",'B')
-    c = YamlItems("c",a)
-    d = YamlItems("c",[a,b])
+    c = YamlItems("c",[a,b])
+    d = YamlItems("c",[a,b,c])
     # log.warning(a)
     # log.warning(asdict(a)) # works
     # log.warning(asdict(c)) # also works as chained
