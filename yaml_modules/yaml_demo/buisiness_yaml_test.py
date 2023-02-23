@@ -106,14 +106,14 @@ def test_dataclass():
         line: int = 0
         column: int = 0
 
-
-
     a = YamlItems("a")
     b = YamlItems("b")
     c = YamlItems("c",a)
+    d = YamlItems("c",[a,b])
     # log.warning(a)
     log.warning(asdict(a)) # works
     log.warning(asdict(c)) # also works as chained
+    log.warning(asdict(d)) # also works as chained
 
     # @dataclass
     # class C:
