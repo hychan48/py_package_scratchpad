@@ -1,0 +1,19 @@
+{
+  "key": "c",
+  "value": [
+    {
+      "key": "a",
+      "value": "A",
+      "line": 0,
+      "column": 0
+    },
+    {
+      "key": "b",
+      "value": "B",
+      "line": 0,
+      "column": 0
+    }
+  ],
+  "line": 0,
+  "column": 0
+}

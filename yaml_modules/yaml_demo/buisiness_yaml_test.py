@@ -106,14 +106,17 @@ def test_dataclass():
         line: int = 0
         column: int = 0
 
-    a = YamlItems("a")
-    b = YamlItems("b")
+    a = YamlItems("a",'A')
+    b = YamlItems("b",'B')
     c = YamlItems("c",a)
     d = YamlItems("c",[a,b])
     # log.warning(a)
-    log.warning(asdict(a)) # works
-    log.warning(asdict(c)) # also works as chained
-    log.warning(asdict(d)) # also works as chained
+    # log.warning(asdict(a)) # works
+    # log.warning(asdict(c)) # also works as chained
+    # log.warning(asdict(d)) # also works as chained
+    with open(str(Path("yaml_modules/yaml_demo/test_dataclass.json")), "w", newline='\n') as outfile:
+        json.dump(asdict(d), outfile,indent = 2)
+
 
     # @dataclass
     # class C:
