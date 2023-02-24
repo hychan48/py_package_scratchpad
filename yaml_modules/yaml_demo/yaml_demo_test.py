@@ -41,12 +41,50 @@ class SafeLineLoader(SafeLoader):
         # the line number where the previous token has ended (plus empty lines)
         line = self.line
         column = self.column
-        log.warning(f"compose_node line: {line + 1}")
-        log.warning(f"compose_node col: {column + 1}")
+
+
+
+
+        # log.warning(f"compose_node line: {line + 1}")
+        # log.warning(f"compose_node col: {column + 1}")
+
         # node = self.compose_node(parent, index) # max call stack
         # node = super(SafeLineLoader, self).compose_node(parent, index) # max call stack
         node = super().compose_node(parent, index) # max call stack
-        node.__line__ = line + 1 # line numbers start at 0 so + 1
+
+        # line = node.start_mark.line
+        # column = node.start_mark.column
+
+        # if it's nested. line doesnt need to be appended by 1... interesting
+        # so any nested is off by line 1
+        # node.__line__ = line + 1  # line numbers start at 0 so + 1
+        node.__line__ = line + 1  # using start_mark... or end_mark. doesnt need + 1? . no it doesnt help.
+        # if they're all equal... it's minue one?. 17 is the wrong one...
+        # log.warning(f"parent: {parent}")
+
+        # Investigating why line number is off by 1 for non nested values
+        # Results using self.line without appending...
+        # line start.line end.line
+        # WARNING  root:yaml_demo_test.py:74 hello_1: 0 0 0 # needs to be + 1. when they're all equal
+        # WARNING  root:yaml_demo_test.py:66 five: 5 4 4 # line is correct w/0 + 1
+        # WARNING  root:yaml_demo_test.py:69 14: 14 13 13 #
+        # WARNING  root:yaml_demo_test.py:72 17.1: 16 16 16 # +1 is needed
+
+        if(node.value == 'hello_1'):
+            # log.warning(f"parent: {parent}")
+            log.warning(f"hello_1: {line} {node.start_mark.line} {node.end_mark.line}")
+        if(node.value == 'five'):
+            # log.warning(f"parent: {parent}")
+            log.warning(f"five: {line} {node.start_mark.line} {node.end_mark.line}")
+        elif(node.value == '14'):
+            # log.warning(f"parent: {parent}")
+            log.warning(f"14: {line} {node.start_mark.line} {node.end_mark.line}")
+        elif(node.value == '17.1'):
+            # log.warning(f"parent: {parent}")
+            log.warning(f"17.1: {line} {node.start_mark.line} {node.end_mark.line}")
+        # if(type(node.value) == str):
+        #     log.warning(f"compose_node value line col: \"{node.value}\" {line + 1}:{column + 1}")
+
         # log.critical(line + 1) # gets run per node
         return node
 

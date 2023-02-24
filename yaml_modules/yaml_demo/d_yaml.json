@@ -1,22 +1,37 @@
 {
-  "str_hello": "hello",
+  "str_hello_1": "hello_1",
   "int_2": 2,
-  "items": [
-    1,
-    2,
-    3
+  "items_3": [
+    3.1,
+    3.2,
+    3.3
   ],
-  "str_items": [
+  "str_items_4": [
     "five",
     "six",
     "seven"
   ],
-  "nested_items": [
+  "nested_items_8": [
     {
-      "children": [
+      "children_9": [
         10,
         11,
-        12
+        12,
+        {
+          "deep_13": [
+            14,
+            15,
+            16
+          ],
+          "__line__": 13
+        },
+        {
+          "deep_17": [
+            17.1,
+            17.2
+          ],
+          "__line__": 17
+        }
       ],
       "__line__": 9
     }
