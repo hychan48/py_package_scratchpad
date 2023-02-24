@@ -72,16 +72,16 @@ class SafeLineLoader(SafeLoader):
 
         if(node.value == 'hello_1'):
             # log.warning(f"parent: {parent}")
-            log.warning(f"hello_1: {line} {node.start_mark.line} {node.end_mark.line}")
+            log.warning(f"hello_1: {line} {node.start_mark.line} {node.end_mark.line} | {column}")
         if(node.value == 'five'):
             # log.warning(f"parent: {parent}")
-            log.warning(f"five: {line} {node.start_mark.line} {node.end_mark.line}")
+            log.warning(f"five: {line} {node.start_mark.line} {node.end_mark.line} | {column}")
         elif(node.value == '14'):
             # log.warning(f"parent: {parent}")
-            log.warning(f"14: {line} {node.start_mark.line} {node.end_mark.line}")
+            log.warning(f"14: {line} {node.start_mark.line} {node.end_mark.line} | {column}")
         elif(node.value == '17.1'):
             # log.warning(f"parent: {parent}")
-            log.warning(f"17.1: {line} {node.start_mark.line} {node.end_mark.line}")
+            log.warning(f"17.1: {line} {node.start_mark.line} {node.end_mark.line} | {column}")
         # if(type(node.value) == str):
         #     log.warning(f"compose_node value line col: \"{node.value}\" {line + 1}:{column + 1}")
 
