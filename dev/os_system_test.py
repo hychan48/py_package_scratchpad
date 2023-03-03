@@ -2,8 +2,8 @@
 import sys
 import pytest
 import logging as log
-
-import os
+# import platform # not useful for learning how to get the os
+import os # not useful for learning how to get the os
 
 # https://docs.pytest.org/en/7.1.x/how-to/skipping.html
 @pytest.mark.skipif(not os.name == 'nt' , reason="Window only")
