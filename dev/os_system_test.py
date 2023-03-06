@@ -18,13 +18,14 @@ def test_is_windows():
 def test_windows_env():
     # Local Python Env. seems to work
     # might need to test for overriding
-    env_test = os.system('set ENV_TEST')
+    # env_test = os.system('set ENV_TEST') # will print error to console
+    env_test = os.system('set ENV_TEST 2 > nul')
     log.warning(env_test)
     assert env_test == 1
     # https://able.bio/rhett/how-to-set-and-get-environment-variables-in-python--274rgt5#:~:text=To%20set%20and%20get%20environment%20variables%20in%20Python%20you%20can,Get%20environment%20variables%20USER%20%3D%20os.
     os.environ['ENV_TEST'] = 'hello world'
     # os.unsetenv()
-    env_test = os.system('set ENV_TEST')
+    env_test = os.system('set ENV_TEST 1 > nul')
     assert env_test == 0
     # log.warning(env_test)
 
