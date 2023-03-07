@@ -1,16 +1,18 @@
 # Default Python packages:
-pip==22.3.1
-setuptools==65.5.1
+pip==23.0.1
+setuptools==67.5.1
 wheel==0.38.4
 
 # sqlite
-SQLAlchemy~=2.0.1
+SQLAlchemy==2.0.5.post1
 
 # ssh
 paramiko~=3.0.0
 #
 pyyaml~=6.0
 
-pytest~=7.2.1
+dotty-dict~=1.3.1
+
+pytest==7.2.2
 # termcolor~=2.2.0
 string-color==1.2.3

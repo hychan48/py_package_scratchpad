@@ -1,7 +1,7 @@
 #https://docs.pytest.org/en/latest/how-to/logging.html#live-logs
 [tool.pytest.ini_options]
-log_file="example.log" # actually file
-log_file_level = "DEBUG"
+#log_file="example.log" # actually file
+#log_file_level = "DEBUG"
 
 #log_cli_level = "DEBUG" # DEBUG INFO WARNING ERROR CRITICAL
 log_cli_level = "WARNING" # DEBUG INFO WARNING ERROR CRITICAL
