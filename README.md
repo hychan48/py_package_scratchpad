@@ -148,3 +148,8 @@ https://www.ssh.com/academy/ssh/sshd_config#:~:text=The%20sshd_config%20file%20i
 AcceptEnv LANG LC_*
 PermitUserEnvironment No
 ```
+
+
+# Jupyter Quick notes
+```python
+```
