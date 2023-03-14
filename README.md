@@ -193,3 +193,8 @@ jupyter-lab
 # Install Poetry - very nice
 * basically yarn / pnpm etc.
 * need to migrate this project
+
+# Learning class methods / metaclass etc
+* https://blog.ionelmc.ro/2015/02/09/understanding-python-metaclasses/
+* Too many hidden things in Python imo
+* type(Type) is when it's not instantiazed class
