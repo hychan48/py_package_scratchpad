@@ -1,4 +1,5 @@
 # Default Python packages:
+# outdated used poetry - will delete soon
 pip==23.0.1
 setuptools==67.5.1
 wheel==0.38.4
