@@ -28,6 +28,7 @@
   * paramiko?
 * fire
   * https://pypi.org/project/fire/
+  * https://github.com/hychan48/python-cli-paths
 * [x] PyTest
 * [x] Path Utils
 * Jupiter - more light weight approach?
@@ -188,3 +189,7 @@ c.NotebookApp.contents_manager_class = "jupytext.TextFileContentsManager"
 $Env:PYTHONPATH="~\PycharmProjects\sqa-rasa-py"
 jupyter-lab
 ```
+
+# Install Poetry - very nice
+* basically yarn / pnpm etc.
+* need to migrate this project
