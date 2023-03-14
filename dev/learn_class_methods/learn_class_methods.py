@@ -41,6 +41,7 @@ class CustomLogger:
                 setattr(cls, arg, d_locals[arg])
         setattr(cls, 'tmp', str(cs(cls.str_to_append, cls.cl_to_append)))
         return cls
+        # return cls() # what's the difference?, this will crash though
         # return str(cs(cls.str_to_append,'blue'))
 
     def __init__(self):
