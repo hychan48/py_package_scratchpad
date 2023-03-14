@@ -133,7 +133,57 @@ def test_name_init_only():
     cls_meta.log('yellow CLS')
 
 
+class Random:
+    pass
+class LogTest:
+    """
+    or does it need to be a inner class?
+    assume it's a interface?
+    """
+    rasa_state = ' placeholder ' # a class variable... should be mroe or less static
+
+    # def log_info(self,s_input):
+    @classmethod
+    def log_cls(cls, s_input):
+        log.warning('log_cls' + cls.rasa_state + s_input)
+
+    def log_self(self, s_input):
+        log.warning('log_self' + self.rasa_state + s_input)
+
+    @staticmethod
+    def log_static(self, s_input):
+        log.warning('log_static' + self.rasa_state + s_input)
 
 
+class SampleRasaControllerClass(Random, LogTest):
+    # Init Functions - best to move and make it a package
+    # so just extends multiple classes i guess?
+    """
+    https://stackoverflow.com/questions/865115/how-do-i-correctly-clean-up-a-python-object
+    super
+    """
+
+    # logTestClass = LogTest.__init__(self) # not here
+
+    def __init__(self, s_yaml_raw_init: str):  # s_yaml_raw can be a filename too i think omg typo
+
+        # defined class level
+        log.warning("init")
+        # logTest = LogTest.__init__(self)
+        self.rasa_state = 'some new str' # this overrides what was in the class
+        # LogTest.rasa_state = 'cls' # also works
+        LogTest.__init__(self) # that's why classmethod is for i guess?
+        self.log_self('hi')
+        self.rasa_state = '****'  # this overrides what was in the class
+        self.log_self('bye')
+
+
+def test_LogTest_self():
+    rasa = SampleRasaControllerClass(s_yaml_raw_init=s_yaml_raw)
+    # tmp = rasa.rasa_exec_state
+
+
+# Factor functions... seems too complicated imo
+# https://www.geeksforgeeks.org/factory-method-python-design-patterns/
 if __name__ == '__main__':
     pytest.main(sys.argv)
