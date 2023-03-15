@@ -1,4 +1,4 @@
-import pytest
+# import pytest
 import logging as log
 
 """
@@ -31,6 +31,13 @@ class A(Base):
     def log_a(self):
         log.warning("a :" + self.some_str)
 
+    def nothing_warning(self):
+        """no static warning if I do this"""
+
+    def warning_using_pass(self):
+        # interesting... no warning yet
+        pass
+
 
 class B(Base):
     def log_b(self):
@@ -43,6 +50,7 @@ class C(A, B):
 
     def __init__(self, someparam='s'):
         super().__init__()  # actual syntax or A.__init__
+        self.someparam = someparam
 
     #     super().__init__(self)
     #     # default works?
