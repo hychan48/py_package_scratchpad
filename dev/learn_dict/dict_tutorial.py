@@ -20,12 +20,16 @@ i think more than one level. doesnt work?
 sample_a_dict = dict(a={"b": {"c": "d"}})
 sample_a_str = {"a": {"b": {"c": "d"}}}
 
-
+# https://pypi.org/project/dataclasses-json/
+# this just changes the case of the fields
 # maybe add dotty to make life easier and make this its own package
+# defn difficult to define in python
 @dataclass()
 class Object:
-    combined: dict=None
+    combined: dict = None
 
+    # maybe value should be class Object? and value without key?
+    # pretty complex imo
     # key: str
     # value: object
     # x: list = field(default_factory=list)
@@ -39,12 +43,13 @@ class Object:
         #     # need to create a combined option or something
         #     # todo
         #     return
-
+        self.tmp: Object = None # this works
         self.key = key
-        self.value = value
+        if isinstance(value, self.__class__):
+            self.value: Object = value
+        else:
+            self.value = value
         self.combined = dict([(key, value)])
-
-
 
     # doesnt change the asdict... interesting
     # def __repr__(self):
@@ -53,7 +58,7 @@ class Object:
         # need to modify this?
         value = self.value
         # is_obj = isinstance(value,self.__class__) # same as comparing to "Object"
-        if isinstance(value,self.__class__):
+        if isinstance(value, self.__class__):
             value = value.to_dict()
         d = dict([(self.key, value)])
         return d
@@ -90,6 +95,8 @@ def test_dataclass_obj():
     value = Object('b', 'c')
     a = Object("a", value)
     log.warning(a.to_dict())
+    b = a.tmp #
+
     # WARNING  root:dict_tutorial.py:63 {'key': 'a', 'value': {'b': 'c'}}
     # we want a:b:c
 
@@ -97,7 +104,7 @@ def test_dataclass_obj():
 @pytest.mark.parametrize("test_input,expected", [
     ("b", {'a': 'b'}),
     (dict(b='c'), {'a': {'b': 'c'}}),
-    (Object('b','c'), {'a': {'b': 'c'}}),
+    (Object('b', 'c'), {'a': {'b': 'c'}}),
 ])
 def test_dataclass_obj_multi(test_input, expected):
     try:
